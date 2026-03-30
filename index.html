@@ -124,10 +124,10 @@
         <div id="highScoreBoard">High Score: 0</div>
         <div class="player" id="player"></div>
         <button id="pauseButton">
-            <img src="https://imagizer.imageshack.com/v2/361x361q70/r/924/sAFgKF.png" alt="Pause" id="buttonImage">
+            <img src="https://raw.githubusercontent.com/Sevastipol/Cuberun.com/refs/heads/main/assets/playicon.png" alt="Pause" id="buttonImage">
         </button>
         <div id="startingScreen">
-            <img id="logo" src="https://imagizer.imageshack.com/v2/500x500q90/r/924/No6GcW.png" alt="Logo">
+            <img id="logo" src="https://raw.githubusercontent.com/Sevastipol/Cuberun.com/refs/heads/main/assets/cuberunlogo.png" alt="Logo">
             <div id="startingText">Use WASD to start game</div>
         </div>
     </div>
@@ -242,11 +242,11 @@
             powerUp.setAttribute('data-type', type);
 
             if (type === 'speed') {
-                powerUp.style.backgroundImage = "url('https://imagizer.imageshack.com/v2/361x361q70/r/923/PoWJh7.png')";
+                powerUp.style.backgroundImage = "url('https://raw.githubusercontent.com/Sevastipol/Cuberun.com/refs/heads/main/assets/run.png')";
             } else if (type === 'freeze') {
-                powerUp.style.backgroundImage = "url('https://cdn4.iconfinder.com/data/icons/snow-glyph/512/Flake_snow_snowflake-512.png')";
+                powerUp.style.backgroundImage = "url('https://raw.githubusercontent.com/Sevastipol/Cuberun.com/refs/heads/main/assets/Flake_snow_snowflake-512.png')";
             } else if (type === 'despawn') {
-                powerUp.style.backgroundImage = "url('https://static.thenounproject.com/png/1181336-200.png')";
+                powerUp.style.backgroundImage = "url('https://raw.githubusercontent.com/Sevastipol/Cuberun.com/refs/heads/main/assets/eat.png')";
             }
 
             gameArea.appendChild(powerUp);
@@ -437,34 +437,33 @@
         }
 
         function endGame() {
-    clearInterval(enemySpawnInterval);
-    clearInterval(powerUpSpawnInterval);
-    isSpawningActive = false;
+            clearInterval(enemySpawnInterval);
+            clearInterval(powerUpSpawnInterval);
+            isSpawningActive = false;
 
-    enemies.forEach(enemy => enemy.remove());
-    enemies = [];
-    powerUps.forEach(powerUp => powerUp.remove());
-    powerUps = [];
+            enemies.forEach(enemy => enemy.remove());
+            enemies = [];
+            powerUps.forEach(powerUp => powerUp.remove());
+            powerUps = [];
 
-    // Reset enemy speed to 0.7 upon ending the game
-    enemySpeed = 0.7;
+            // Reset enemy speed to 0.7 upon ending the game
+            enemySpeed = 0.7;
 
-    if (score > highScore) {
-        highScore = score;
-        localStorage.setItem('highScore', highScore);
-        highScoreBoard.innerText = `High Score: ${highScore}`;
-    }
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('highScore', highScore);
+                highScoreBoard.innerText = `High Score: ${highScore}`;
+            }
 
-    startingScreen.style.display = 'flex';
-    document.getElementById('startingText').innerText = `You scored ${score}. Use WASD to play again`;
+            startingScreen.style.display = 'flex';
+            document.getElementById('startingText').innerText = `You scored ${score}. Use WASD to play again`;
 
-    score = 0;
-    updateScore();
-    isPaused = true;
+            score = 0;
+            updateScore();
+            isPaused = true;
 
-    createExplosion();
-}
-
+            createExplosion();
+        }
 
         function createExplosion() {
             const playerRect = player.getBoundingClientRect();
@@ -505,8 +504,8 @@
         pauseButton.addEventListener('click', function() {
             isPaused = !isPaused;
             buttonImage.src = isPaused ?
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdRyxOH6cg2DlA-GPCASXmYlVia1Kt5U8fTw&s' :
-                'https://imagizer.imageshack.com/v2/361x361q70/r/924/sAFgKF.png';
+                'https://raw.githubusercontent.com/Sevastipol/Cuberun.com/refs/heads/main/assets/paused.png' :
+                'https://raw.githubusercontent.com/Sevastipol/Cuberun.com/refs/heads/main/assets/playicon.png';
 
             if (isPaused) {
                 startingScreen.style.display = 'flex';
@@ -523,7 +522,7 @@
             if (event.key === 'w' || event.key === 'a' || event.key === 's' || event.key === 'd') {
                 if (isPaused) {
                     isPaused = false;
-                    buttonImage.src = 'https://imagizer.imageshack.com/v2/361x361q70/r/924/sAFgKF.png';
+                    buttonImage.src = 'https://raw.githubusercontent.com/Sevastipol/Cuberun.com/refs/heads/main/assets/playicon.png';
                     startingScreen.style.display = 'none';
                     startSpawning();
                 }
@@ -545,7 +544,7 @@
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
                 isPaused = true;
-                buttonImage.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdRyxOH6cg2DlA-GPCASXmYlVia1Kt5U8fTw&s';
+                buttonImage.src = 'https://raw.githubusercontent.com/Sevastipol/Cuberun.com/refs/heads/main/assets/paused.png';
                 startingScreen.style.display = 'flex';
                 document.getElementById('startingText').innerText = 'The game is paused. Use WASD to unpause';
             }
